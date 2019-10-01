@@ -11,17 +11,16 @@ import DetailMeetup from '../pages/Meetup/Detail';
 import EditMeetup from '../pages/Meetup/Edit';
 
 export default function Routes() {
-    return (
-        <Switch>
-            <Route path="/" exact component={SignIn} />
-            <Route path="/register" component={SignUp} />
+  return (
+    <Switch>
+      <Route path="/" exact component={SignIn} />
+      <Route path="/register" component={SignUp} />
 
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/meetup" component={CreateMeetup} />
-            <Route path="/meetup/:id" component={DetailMeetup} />
-            <Route path="/meetup/:id/edit" component={EditMeetup} />
-
-        </Switch>
-    );
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/meetup" component={CreateMeetup} />
+      <Route path="/meetup/:id" component={DetailMeetup} />
+      <Route path="/meetup/:id/edit" component={EditMeetup} />
+    </Switch>
+  );
 }
