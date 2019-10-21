@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import Route from './Route';
 
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
@@ -16,11 +17,13 @@ export default function Routes() {
       <Route path="/" exact component={SignIn} />
       <Route path="/register" component={SignUp} />
 
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/meetup" component={CreateMeetup} />
-      <Route path="/meetup/:id" component={DetailMeetup} />
-      <Route path="/meetup/:id/edit" component={EditMeetup} />
+      <Route path="/dashboard" component={Dashboard} isPrivate />
+      <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/meetup" component={CreateMeetup} isPrivate />
+      <Route path="/meetup/:id" component={DetailMeetup} isPrivate />
+      <Route path="/meetup/:id/edit" component={EditMeetup} isPrivate />
+
+      <Route path="/" component={() => <h1>404</h1>} />
     </Switch>
   );
 }
