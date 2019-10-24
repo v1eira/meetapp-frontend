@@ -25,6 +25,14 @@ export const Badge = styled.button`
         border-radius: 50%;
       }
     `}
+
+  svg {
+    color: #fff;
+
+    &:hover {
+      color: #999;
+    }
+  }
 `;
 
 export const NotificationList = styled.div`
