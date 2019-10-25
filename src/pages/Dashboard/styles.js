@@ -58,6 +58,7 @@ export const Meetup = styled.li`
   padding: 20px;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 
   opacity: ${props => (props.past ? 0.5 : 1)};
 
