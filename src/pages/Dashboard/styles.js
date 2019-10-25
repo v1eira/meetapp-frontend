@@ -30,6 +30,7 @@ export const Container = styled.div`
       width: 172px;
       font-size: 16px;
       font-weight: bold;
+      transition: background 0.2s;
 
       &:hover {
         background: ${darken(0.08, '#f94d6a')};
@@ -46,7 +47,7 @@ export const Container = styled.div`
 `;
 
 export const Scroll = styled(PerfectScrollbar)`
-  max-height: 572px;
+  max-height: 576px;
   padding: 5px 15px;
 `;
 
@@ -78,5 +79,9 @@ export const Meetup = styled.li`
 
   & + li {
     margin-top: 10px;
+  }
+
+  &:hover {
+    border: 1px solid #f94d6a;
   }
 `;

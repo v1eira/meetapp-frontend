@@ -64,6 +64,7 @@ export const Profile = styled.div`
     background: #d44059;
     color: #fff;
     font-weight: bold;
+    transition: background 0.2s;
 
     &:hover {
       background: ${darken(0.1, '#d44059')};

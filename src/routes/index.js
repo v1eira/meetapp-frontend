@@ -7,8 +7,8 @@ import SignUp from '../pages/SignUp';
 
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
-import CreateMeetup from '../pages/MeetupCreate';
-import DetailMeetup from '../pages/MeetupDetail';
+import CreateMeetup from '../pages/Meetup/Create';
+import DetailMeetup from '../pages/Meetup/Detail';
 
 export default function Routes() {
   return (
