@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import { parseISO } from 'date-fns';
 
 import { MdAddCircleOutline } from 'react-icons/md';
 
@@ -27,29 +29,49 @@ const schema = Yup.object().shape({
   location: Yup.string().required('A localização é obrigatória'),
 });
 
-export default function Create() {
+export default function Edit({ match }) {
+  const { id } = match.params;
+
   const [loading, setLoading] = useState(false);
+  const [meetup, setMeetup] = useState(null);
+
+  useEffect(() => {
+    async function loadMeetup() {
+      try {
+        const response = await api.get(`/meetups/${id}`);
+
+        const data = {
+          ...response.data,
+          date: parseISO(response.data.date),
+        };
+
+        setMeetup(data);
+      } catch (err) {
+        toast.error('Meetup não encontrado');
+        history.push('/');
+      }
+    }
+
+    loadMeetup();
+  }, [id]);
 
   async function handleSubmit(data) {
     setLoading(true);
 
     try {
-      const response = await api.post('meetups', data);
-      const { id } = response.data;
+      await api.put(`/meetups/${id}`, data);
 
-      toast.success('Meetup criado com sucesso');
+      toast.success('Meetup atualizado com sucesso');
       setLoading(false);
-
-      history.push(`/meetup/${id}`);
     } catch (err) {
-      toast.error('Erro ao criar Meetup, confira os dados');
+      toast.error('Erro ao atualizar Meetup, confira os dados');
       setLoading(false);
     }
   }
 
   return (
     <Container>
-      <Form schema={schema} onSubmit={handleSubmit}>
+      <Form schema={schema} initialData={meetup} onSubmit={handleSubmit}>
         <BannerInput name="file_id" />
         <Input name="title" placeholder="Título do Meetup" />
         <Input multiline name="description" placeholder="Descrição completa" />
@@ -68,3 +90,11 @@ export default function Create() {
     </Container>
   );
 }
+
+Edit.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};

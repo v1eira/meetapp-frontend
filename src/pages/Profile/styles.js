@@ -40,6 +40,9 @@ export const Container = styled.div`
 
     button {
       align-self: flex-end;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
       margin: 5px 0 0;
       height: 42px;
       width: 162px;

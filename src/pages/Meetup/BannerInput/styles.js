@@ -27,6 +27,10 @@ export const Container = styled.div`
       opacity: 0.3;
       font-size: 20px;
       font-weight: bold;
+
+      svg {
+        margin-bottom: 10px;
+      }
     }
 
     img {

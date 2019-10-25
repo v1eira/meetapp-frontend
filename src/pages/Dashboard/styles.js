@@ -22,6 +22,9 @@ export const Container = styled.div`
     }
 
     button {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
       border: 0;
       border-radius: 4px;
       background: #f94d6a;

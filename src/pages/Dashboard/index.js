@@ -3,6 +3,8 @@ import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { Link } from 'react-router-dom';
 
+import { MdAddCircleOutline } from 'react-icons/md';
+
 import api from '~/services/api';
 import history from '~/services/history';
 
@@ -26,14 +28,17 @@ export default function Dashboard() {
     }
 
     loadMeetups();
-  }, [meetups]);
+  }, []);
 
   return (
     <Container>
       <header>
         <strong>Meus meetups</strong>
         <Link to="/meetup">
-          <button type="button">Novo meetup</button>
+          <button type="button">
+            <MdAddCircleOutline size={22} color="#FFF" />
+            Novo meetup
+          </button>
         </Link>
       </header>
 

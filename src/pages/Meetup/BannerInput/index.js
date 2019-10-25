@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useField } from '@rocketseat/unform';
 
+import { MdPhotoCamera } from 'react-icons/md';
+
 import api from '~/services/api';
 
 import { Container } from './styles';
@@ -42,6 +44,7 @@ export default function BannerInput() {
         {preview && <img src={preview} alt="Meetup banner" />}
         {!preview && (
           <div>
+            <MdPhotoCamera size={48} color="rgba(255, 255, 255, .7)" />
             <strong>Selecionar imagem</strong>
           </div>
         )}
