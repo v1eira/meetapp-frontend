@@ -88,7 +88,6 @@ export default function Edit({ match }) {
             name="date"
             autoComplete="off"
             placeholder="Data do meetup"
-            value={meetup ? meetup.date : ''}
           />
           <Input name="location" placeholder="Localização" />
 
