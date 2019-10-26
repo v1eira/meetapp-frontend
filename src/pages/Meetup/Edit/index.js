@@ -13,7 +13,7 @@ import history from '~/services/history';
 import BannerInput from '../BannerInput';
 import DatePicker from '~/components/DatePicker';
 
-import { Container } from './styles';
+import { Container, Loading } from './styles';
 
 const schema = Yup.object().shape({
   file_id: Yup.number()
@@ -63,6 +63,8 @@ export default function Edit({ match }) {
 
       toast.success('Meetup atualizado com sucesso');
       setLoading(false);
+
+      history.push(`/meetup/${id}`);
     } catch (err) {
       toast.error('Erro ao atualizar Meetup, confira os dados');
       setLoading(false);
@@ -71,22 +73,31 @@ export default function Edit({ match }) {
 
   return (
     <Container>
-      <Form schema={schema} initialData={meetup} onSubmit={handleSubmit}>
-        <BannerInput name="file_id" />
-        <Input name="title" placeholder="Título do Meetup" />
-        <Input multiline name="description" placeholder="Descrição completa" />
-        <DatePicker
-          name="date"
-          autoComplete="off"
-          placeholder="Data do meetup"
-        />
-        <Input name="location" placeholder="Localização" />
+      {!meetup ? (
+        <Loading>Carregando...</Loading>
+      ) : (
+        <Form schema={schema} initialData={meetup} onSubmit={handleSubmit}>
+          <BannerInput name="file_id" />
+          <Input name="title" placeholder="Título do Meetup" />
+          <Input
+            multiline
+            name="description"
+            placeholder="Descrição completa"
+          />
+          <DatePicker
+            name="date"
+            autoComplete="off"
+            placeholder="Data do meetup"
+            value={meetup ? meetup.date : ''}
+          />
+          <Input name="location" placeholder="Localização" />
 
-        <button id="save" type="submit" disabled={loading}>
-          <MdAddCircleOutline size={22} color="#FFF" />
-          Salvar meetup
-        </button>
-      </Form>
+          <button id="save" type="submit" disabled={loading}>
+            <MdAddCircleOutline size={22} color="#FFF" />
+            Salvar meetup
+          </button>
+        </Form>
+      )}
     </Container>
   );
 }

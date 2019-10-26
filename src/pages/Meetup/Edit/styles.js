@@ -76,3 +76,13 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const Loading = styled.div`
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  align-self: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+`;

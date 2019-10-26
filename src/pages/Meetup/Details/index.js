@@ -10,7 +10,6 @@ import { MdDeleteForever, MdEdit, MdPlace, MdEvent } from 'react-icons/md';
 
 import {
   Container,
-  Content,
   Cover,
   Description,
   DescriptionDetails,
@@ -59,52 +58,50 @@ export default function Details({ match }) {
 
   return (
     <Container>
-      <Content>
-        <Header>
-          <h1>{meetup.title}</h1>
-          <HeaderButtons>
-            <Link to={`/meetup/${meetup.id}/edit`}>
-              <button id="edit" type="submit" disabled={meetup.past}>
-                <MdEdit size={20} />
-                <div>Editar</div>
-              </button>
-            </Link>
-            <button
-              id="delete"
-              type="submit"
-              onClick={() => cancelMeetup()}
-              disabled={meetup.past}
-            >
-              <MdDeleteForever size={20} />
-              <div>Apagar</div>
+      <Header>
+        <h1>{meetup.title}</h1>
+        <HeaderButtons>
+          <Link to={`/meetup/${meetup.id}/edit`}>
+            <button id="edit" type="submit" disabled={meetup.past}>
+              <MdEdit size={20} />
+              <div>Editar</div>
             </button>
-          </HeaderButtons>
-        </Header>
+          </Link>
+          <button
+            id="delete"
+            type="submit"
+            onClick={() => cancelMeetup()}
+            disabled={meetup.past}
+          >
+            <MdDeleteForever size={20} />
+            <div>Apagar</div>
+          </button>
+        </HeaderButtons>
+      </Header>
 
-        <Cover>
-          <img
-            src={
-              meetup.banner
-                ? meetup.banner.url
-                : 'http://www.catoca.com/wp-content/themes/images/no-image-found-360x260.png'
-            }
-            alt="Meetup Banner"
-          />
-        </Cover>
+      <Cover>
+        <img
+          src={
+            meetup.banner
+              ? meetup.banner.url
+              : 'http://www.catoca.com/wp-content/themes/images/no-image-found-360x260.png'
+          }
+          alt="Meetup Banner"
+        />
+      </Cover>
 
-        <Description>
-          <p>{meetup.description}</p>
+      <Description>
+        <p>{meetup.description}</p>
 
-          <DescriptionDetails>
-            <div>
-              <MdEvent /> <span>{dateFormatted(meetup.date)}</span>
-            </div>
-            <div>
-              <MdPlace /> <span>{meetup.location}</span>
-            </div>
-          </DescriptionDetails>
-        </Description>
-      </Content>
+        <DescriptionDetails>
+          <div>
+            <MdEvent /> <span>{dateFormatted(meetup.date)}</span>
+          </div>
+          <div>
+            <MdPlace /> <span>{meetup.location}</span>
+          </div>
+        </DescriptionDetails>
+      </Description>
     </Container>
   );
 }
